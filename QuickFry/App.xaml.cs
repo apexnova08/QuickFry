@@ -26,7 +26,7 @@ public partial class App : Application
     // FireSharp
     FirebaseConfig fcon = new FirebaseConfig()
     {
-        AuthSecret = "2x4hgVREArU9KamUsb8rFKhtfkwJS0NNyujA41Vw",
+        AuthSecret = "(Firebase auth code here)",
         BasePath = "https://quickfry20-default-rtdb.asia-southeast1.firebasedatabase.app/"
     };
     public static FirebaseClient client;
@@ -58,7 +58,7 @@ public partial class App : Application
             File.WriteAllText(LoggedInAccountPath, "N/A");
 
         // Syncfusion
-        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBaFt+QHJqVk1hXk5Hd0BLVGpAblJ3T2ZQdVt5ZDU7a15RRnVfR1xiS39SckdlXHhZcA==;Mgo+DSMBPh8sVXJ1S0R+X1pFdEBBXHxAd1p/VWJYdVt5flBPcDwsT3RfQF5jTH9SdERiXX1YdX1WRg==;ORg4AjUWIQA/Gnt2VFhiQlJPd11dXmJWd1p/THNYflR1fV9DaUwxOX1dQl9gSXtSd0diWHtcdnJURmA=;MjAxNTc4OEAzMjMxMmUzMjJlMzNTWnM5T0oxUEtnZDk3UmgzOXYvMDRFUFd1WVdLZ0Qra3V3c0pwT0tyemR3PQ==;MjAxNTc4OUAzMjMxMmUzMjJlMzNiV29XNWhLSWdMN0dNSitxKytJT1NISmx6ZFNCMjVKZVFvYjlaWmtyK2pRPQ==;NRAiBiAaIQQuGjN/V0d+Xk9HfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5Wd0RhWH5acnJTT2Zc;MjAxNTc5MUAzMjMxMmUzMjJlMzNJZndhMzdHaWZZWFd5MnpQVXgzZ2c1RTB4LzEram82akN4cTlGOXZNY3NRPQ==;MjAxNTc5MkAzMjMxMmUzMjJlMzNtNThBZS9CZ2RVOWI5NjdxU29LdkVJTmVCWTlQTjJXbkp5NEc5dzVVRzBRPQ==;Mgo+DSMBMAY9C3t2VFhiQlJPd11dXmJWd1p/THNYflR1fV9DaUwxOX1dQl9gSXtSd0diWHtcdnNSQ2A=;MjAxNTc5NEAzMjMxMmUzMjJlMzNCTlFaNnhPd3pzaUxJR28zKzQ4WEdiOURDd05QbTRtTW13b1FiR1hZdGtzPQ==;MjAxNTc5NUAzMjMxMmUzMjJlMzNKeXBQREk5Y3B5SFNFbXRSSk1jeGpuRkFPcWxzOEgzVnBSYnZVeEE1N1ZjPQ==;MjAxNTc5NkAzMjMxMmUzMjJlMzNJZndhMzdHaWZZWFd5MnpQVXgzZ2c1RTB4LzEram82akN4cTlGOXZNY3NRPQ==");
+        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("(Syncfusion license key here)");
 
         InitializeComponent();
 
