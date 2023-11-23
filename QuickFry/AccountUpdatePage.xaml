@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.AccountUpdatePage"
+             Title="AccountUpdatePage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <!--Personal Info-->
+            <Label
+                Text="Personal Info"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            <StackLayout Margin="10, 0, 10, 20">
+                <!--Name-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Name"/>
+                    <Label
+                        x:Name="lblNameEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Entry
+                    x:Name="txtName"
+                    Placeholder="Name"/>
+
+                <!--Number-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Contact No."/>
+                    <Label
+                        x:Name="lblContactEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Entry
+                    x:Name="txtContact"
+                    Placeholder="09XXXXXXXXX"
+                    MaxLength="11"
+                    Keyboard="Telephone"/>
+            </StackLayout>
+
+            <!--Credentials-->
+            <Label
+                Text="Credentials"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            <StackLayout Margin="10, 0, 10, 20">
+                
+                <!--Password-->
+                <Label Text="New Password (Leave blank to keep)" Margin="0, 15, 0, 0"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        Placeholder="New Password"
+                        IsPassword="True"
+                        x:Name="txtPassword"
+                        TextChanged="PasswordChanged"/>
+                    <Button
+                        Grid.Column="1"
+                        x:Name="SHPassword"
+                        Clicked="SHPasswordClicked"
+                        Text="SHOW"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"
+                        Padding="5"/>
+                </Grid>
+                
+                <!--Confirm Password-->
+                <StackLayout x:Name="CPasswordPanel" IsVisible="False">
+                    <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                        <Label Text="Confirm New Password"/>
+                        <Label
+                            x:Name="lblCPasswordEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                        <Label
+                            x:Name="lblPasswordsNotMatch"
+                            Text="*Passwords do not match"
+                            FontSize="12"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Entry
+                            Grid.Column="0"
+                            Placeholder="Confirm New Password"
+                            IsPassword="True"
+                            x:Name="txtCPassword"/>
+                        <Button
+                            Grid.Column="1"
+                            x:Name="SHCPassword"
+                            Clicked="SHConfirmPasswordClicked"
+                            Text="SHOW"
+                            FontFamily="Arial"
+                            FontAttributes="Bold"
+                            TextColor="Gray"
+                            BackgroundColor="Transparent"
+                            Padding="5"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+
+            <!--Verification-->
+            <Label
+                Text="Verification"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            <StackLayout Margin="10, 0, 10, 20">
+
+                <!--Verification Password-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Current Password"/>
+                    <Label
+                        x:Name="lblVPasswordEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        Placeholder="Current Password"
+                        IsPassword="True"
+                        x:Name="txtVPassword"/>
+                    <Button
+                        Grid.Column="1"
+                        x:Name="SHVPassword"
+                        Clicked="SHVerificationPasswordClicked"
+                        Text="SHOW"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"
+                        Padding="5"/>
+                </Grid>
+            </StackLayout>
+            <Button
+                Text="Update Account"
+                Clicked="UpdateClicked"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="0, 25, 0, 0"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

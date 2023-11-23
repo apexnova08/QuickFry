@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.ASAccountsPage"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             x:DataType="viewmodel:AccountViewModel"
+             Title="Accounts">
+    <StackLayout>
+        <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    Text="Your Account"
+                    VerticalTextAlignment="Center"
+                    FontSize="20"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="39"/>
+                <Button
+                    Text="Update"
+                    Clicked="EditAccountClicked"/>
+            </StackLayout>
+
+            <StackLayout Margin="10">
+                <Label
+                    Text="{Binding AccountName}"
+                    FontSize="17"
+                    FontAttributes="Bold"/>
+                <Label
+                    Text="{Binding AccountUsername, StringFormat='@{0}'}"
+                    FontFamily="Arial"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        Text="Contact: "
+                        TextColor="Gray"
+                        FontFamily="Arial"/>
+                    <Label
+                        Text="{Binding AccountContact}"
+                        FontFamily="Arial"/>
+                </StackLayout>
+            </StackLayout>
+
+            <Rectangle
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill"
+                HeightRequest="1"
+                Margin="10, 0"/>
+
+        <ScrollView HorizontalOptions="StartAndExpand">
+            <StackLayout>
+                <StackLayout Margin="0, 100" IsVisible="{Binding IsBusy}">
+                    <ActivityIndicator
+                        IsRunning="{Binding IsBusy}"
+                        HorizontalOptions="FillAndExpand"/>
+                    <Label
+                        Text="{Binding Status}"
+                        Margin="10"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <Label
+                    Text="Admin Accounts"
+                    FontSize="17"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"
+                    Margin="0, 10, 0, 0"/>
+                <CollectionView ItemsSource="{Binding AdminAccounts}" EmptyView="Empty" Margin="10, 0, 10, 10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Account">
+                            <StackLayout>
+                                <StackLayout Margin="0, 10">
+                                    <Label Text="{Binding Name}"/>
+                                    <Label
+                                        Text="{Binding Username, StringFormat='@{0}'}"
+                                        FontSize="12"
+                                        FontFamily="Arial"
+                                        TextColor="Gray"/>
+                                    <Label
+                                        Text="{Binding Phone}"
+                                        FontSize="12"
+                                        FontFamily="Arial"
+                                        TextColor="Gray"/>
+                                </StackLayout>
+                                <Rectangle
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="1"
+                                    Margin="10, 0, 10, 5"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Rectangle
+                    BackgroundColor="Gray"
+                    HorizontalOptions="Fill"
+                    HeightRequest="1"/>
+                <Label
+                    Text="Rider Accounts"
+                    FontSize="17"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"
+                    Margin="0, 10, 0, 0"/>
+                <CollectionView ItemsSource="{Binding RiderAccounts}" EmptyView="Empty" Margin="10, 0, 10, 10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Account">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" Margin="0, 10">
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Name}"/>
+                                        <Label
+                                            Text="{Binding Username, StringFormat='@{0}'}"
+                                            FontSize="12"
+                                            FontFamily="Arial"
+                                            TextColor="Gray"/>
+                                        <Label
+                                            Text="{Binding Phone}"
+                                            FontSize="12"
+                                            FontFamily="Arial"
+                                            TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                        <Button
+                                            Text="Disable"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AccountViewModel}}, Path=EDAccountCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="Red"
+                                            Margin="0, 10"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Rectangle
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="1"
+                                    Margin="10, 0, 10, 5"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Rectangle
+                    BackgroundColor="Gray"
+                    HorizontalOptions="Fill"
+                    HeightRequest="1"/>
+                <Label
+                    Text="Disabled Accounts"
+                    FontSize="17"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"
+                    Margin="0, 10, 0, 0"/>
+                <CollectionView ItemsSource="{Binding DisabledAccounts}" EmptyView="Empty" Margin="10, 0, 10, 10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Account">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" Margin="0, 10">
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                Text="{Binding Name}"
+                                                TextDecorations="Strikethrough"
+                                                TextColor="Red"/>
+                                        </StackLayout>
+                                        <Label
+                                            Text="{Binding Username, StringFormat='@{0}'}"
+                                            FontSize="12"
+                                            FontFamily="Arial"
+                                            TextColor="Gray"/>
+                                        <Label
+                                            Text="{Binding Phone}"
+                                            FontSize="12"
+                                            FontFamily="Arial"
+                                            TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                        <Button
+                                            Text="Enable"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AccountViewModel}}, Path=EDAccountCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Margin="0, 10"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Rectangle
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="1"
+                                    Margin="10, 0, 10, 5"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        </StackLayout>
+
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <Button
+            Text="Add Account"
+            Clicked="AddAccountClicked"
+            VerticalOptions="End"
+            HorizontalOptions="Fill"
+            Margin="10"/>
+    </StackLayout>
+</ContentPage>

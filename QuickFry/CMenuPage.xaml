@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfInput="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="QuickFry.CMenuPage"
+             Title="QuickFry Menu"
+             xmlns:qf="clr-namespace:QuickFry"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             x:DataType="viewmodel:CustomerViewModel"
+             Shell.FlyoutBehavior="Disabled">
+    <StackLayout>
+        <StackLayout VerticalOptions="Start" Margin="0, 10, 0, 0">
+            <Grid Margin="20, 10, 20, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="icon_search32"
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="20"/>
+                <Entry
+                    Grid.Column="1"
+                    x:Name="txtSearch"
+                    Text="{Binding SearchString}"
+                    Placeholder="Search by name or ID..."
+                    Completed="SearchClicked"
+                    TextChanged="txtSearch_TextChanged"
+                    HorizontalOptions="Fill"
+                    Margin="10, 0"
+                    IsEnabled="{Binding IsNotBusy}"/>
+                <Button
+                    Grid.Column="1"
+                    Text="✕"
+                    x:Name="btnClearSearchText"
+                    Clicked="ClearSearchText"
+                    TextColor="Gray"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="End"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    IsEnabled="{Binding IsNotBusy}"/>
+                <Button
+                    Grid.Column="2"
+                    Text="Search"
+                    Clicked="SearchClicked"
+                    HeightRequest="40"
+                    IsEnabled="{Binding IsNotBusy}"/>
+            </Grid>
+            <StackLayout Margin="0, 10, 0, 0">
+                <Label
+                    Text="CATEGORY"
+                    FontSize="15"
+                    FontFamily="Arial"
+                    Margin="20, 0"
+                    TextColor="Gray"/>
+                <ScrollView Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <CollectionView ItemsSource="{Binding Ctgs}" ItemsLayout="HorizontalList" Margin="0, 5">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodel:CategoryDisplay">
+                                <Frame Padding="15" BackgroundColor="{Binding Color}" BorderColor="Transparent" Margin="1, 0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CustomerViewModel}}, Path=SelectCategoryCommand}" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding Name}" TextColor="White"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+        <Rectangle
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill"
+                HeightRequest="1"
+                Margin="10, 0"/>
+        <RefreshView Refreshing="Refreshed" Command="{Binding GetProductsCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout>
+                    <StackLayout Margin="0, 100" IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="FillAndExpand"/>
+                        <Label
+                            Text="{Binding Status}"
+                            Margin="10"
+                            HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout x:Name="evItems" IsVisible="{Binding ProductsEmpty}" HorizontalOptions="CenterAndExpand" Margin="0, 100">
+                        <Label
+                            Text="Empty"
+                            TextColor="{StaticResource Gray400}"
+                            HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding Prods}" Margin="10">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                             Span="2"
+                                             HorizontalItemSpacing="10"
+                                             VerticalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="qf:ProductDisplay">
+                                <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource BG2L}, Dark={StaticResource BG2D}}">
+                                    <sfCore:SfEffectsView TouchUpCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CustomerViewModel}}, Path=SelectProductCommand}" TouchUpCommandParameter="{Binding .}">
+                                        <StackLayout>
+                                            <Image Source="{Binding Image}" Aspect="AspectFill"  HorizontalOptions="Fill" HeightRequest="150"/>
+                                            <StackLayout HorizontalOptions="Start">
+
+
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="StartAndExpand" Margin="10, 0">
+                                                <StackLayout VerticalOptions="StartAndExpand"/>
+                                                <StackLayout>
+                                                    <Label
+                                                        Text="{Binding Name}"
+                                                        FontSize="16"
+                                                        FontAttributes="Bold"/>
+                                                    <Label
+                                                        Text="{Binding CategoryName}"
+                                                        FontSize="10"
+                                                        Margin="0, 0, 0, 5"/>
+                                                </StackLayout>
+                                                <StackLayout VerticalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="End" Margin="10">
+                                                <StackLayout VerticalOptions="StartAndExpand"/>
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                        <Label
+                                                            Text="₱"
+                                                            FontSize="12"
+                                                            FontFamily="Arial"
+                                                            VerticalOptions="Center"/>
+                                                        <Label
+                                                            Text="{Binding Cost, StringFormat='{0:F2}'}"
+                                                            FontSize="18"
+                                                            FontFamily="Arial"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <StackLayout VerticalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </sfCore:SfEffectsView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="QuickFry.CCPickAddressPage"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             Title="CCPickAddressPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False"
+             x:DataType="viewmodel:AccountViewModel">
+    <StackLayout Margin="10">
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label
+                Text="Your Addresses"
+                VerticalTextAlignment="Center"
+                FontSize="20"
+                FontFamily="Arial"
+                FontAttributes="Bold"
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="39"/>
+        </StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout Margin="10">
+                <StackLayout Margin="0, 100" IsVisible="{Binding IsBusy}">
+                    <ActivityIndicator
+                        IsRunning="{Binding IsBusy}"
+                        HorizontalOptions="FillAndExpand"/>
+                    <Label
+                        Text="{Binding Status}"
+                        Margin="10"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding Addresses}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:UserAddress">
+                            <sfCore:SfEffectsView TouchUpCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AccountViewModel}}, Path=SelectAddressCommand}" TouchUpCommandParameter="{Binding .}">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal" Padding="0, 10">
+                                        <StackLayout HorizontalOptions="StartAndExpand">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    Text="{Binding Name}"
+                                                    FontSize="18"
+                                                    FontFamily="Arial"
+                                                    FontAttributes="Bold"/>
+                                                <Label
+                                                    Text="Default address"
+                                                    FontSize="12"
+                                                    FontFamily="Arial"
+                                                    FontAttributes="Italic"
+                                                    TextColor="Gray"
+                                                    IsVisible="{Binding IsDefault}"
+                                                    VerticalOptions="Center"
+                                                    Margin="10, 0, 0, 0"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Address}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Rectangle
+                                        BackgroundColor="Gray"
+                                        HorizontalOptions="Fill"
+                                        HeightRequest="1"
+                                        Margin="10, 0, 10, 5"/>
+                                </StackLayout>
+                            </sfCore:SfEffectsView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

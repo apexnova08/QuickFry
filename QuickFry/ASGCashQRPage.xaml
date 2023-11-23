@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="QuickFry.ASGCashQRPage"
+             Title="GCash QR"
+             Shell.FlyoutBehavior="Disabled">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <StackLayout Margin="10">
+                <Label
+                    Text="GCash QR Code"
+                    Margin="0, 15, 0, 10"/>
+                <sfCore:SfEffectsView TouchUp="GetImage">
+                    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryL}, Dark={StaticResource TertiaryD}}">
+                        <Image
+                            x:Name="imgQR"
+                            HeightRequest="300"
+                            WidthRequest="300"
+                            Aspect="AspectFill"
+                            Source="imageplaceholder1121"/>
+
+                        <Border BackgroundColor="Black" Opacity="0.5"/>
+                        <Label
+                            Text="Click to Change"
+                            FontSize="18"
+                            TextColor="Gray"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+                    </Grid>
+                </sfCore:SfEffectsView>
+
+                <Label
+                    Text="Reference Number"
+                    Margin="0, 15, 0, 0"/>
+                <Entry
+                    x:Name="txtNumber"
+                    Placeholder="09XXXXXXXXX"
+                    MaxLength="11"
+                    Keyboard="Telephone"/>
+                <Button
+                    Text="Update"
+                    Clicked="UpdateClicked"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Margin="0, 25, 0, 0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

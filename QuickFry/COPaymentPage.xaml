@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.COPaymentPage"
+             Title="COPaymentPage">
+    <ScrollView>
+        <StackLayout>
+            <!--GCash Panel-->
+            <StackLayout Margin="10">
+                <Label
+                        Text="Payment Address"
+                        FontSize="20"
+                        FontAttributes="Bold"/>
+                <Image
+                        x:Name="imgGCASHQR"
+                        Source="imageplaceholder1121.png"
+                        Margin="10"/>
+                <StackLayout Orientation="Horizontal" Margin="20, 0">
+                    <Label
+                            x:Name="lblRefNumber"
+                            Text="09123456789"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"
+                            VerticalOptions="Center"/>
+                    <Button
+                            Text="Copy"
+                            HorizontalOptions="End"
+                            Margin="10, 0"/>
+                </StackLayout>
+
+                <Label
+                        Text="Payment Confirmation"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Margin="0, 20, 0, 0"/>
+                <Label
+                        Text="GCash Transaction Number"
+                        Margin="0, 15, 0, 0"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Entry
+                            Grid.Column="0"
+                            x:Name="txtTransactionNumber"
+                            Text="09123456789"
+                            FontSize="18"
+                            FontFamily="Arial"
+                            VerticalOptions="Center"/>
+                    <Button
+                            Grid.Column="21"
+                            Text="PASTE"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            HorizontalOptions="End"
+                            BackgroundColor="Transparent"
+                            Margin="10, 0"/>
+                </Grid>
+
+                <Label
+                        Text="GCash Receipt Screenshot (Optional)"
+                        Margin="0, 15, 0, 0"/>
+                <Frame BackgroundColor="Transparent" BorderColor="Gray" Padding="0" HeightRequest="300" Margin="20">
+                    <Grid>
+                        <Image
+                                Source="imageplaceholder1121"/>
+                        <Button
+                                Text="Click to Upload"
+                                BackgroundColor="Black"
+                                Opacity="0.5"/>
+                    </Grid>
+                </Frame>
+
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

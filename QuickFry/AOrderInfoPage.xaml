@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.AOrderInfoPage"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             x:DataType="viewmodel:OrderViewModel"
+             Title="Order Info"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False">
+    <StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <!--Address-->
+                <Label
+                    Text="Customer Info"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Margin="10, 20, 10, 10"/>
+                <StackLayout Margin="20, 0">
+                    <Label
+                        x:Name="lblCustomerName"
+                        Text="Customer Name"
+                        FontSize="18"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"/>
+                    <Label
+                        x:Name="lblUsername"
+                        Text="@username"
+                        FontSize="12"/>
+                    <Label
+                        x:Name="lblAddress"
+                        Text="Address"
+                        FontSize="16"
+                        Margin="10, 10"/>
+                    <Frame BorderColor="Gray" BackgroundColor="Transparent" HeightRequest="50" Padding="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CopyContact"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                x:Name="lblContact"
+                                Text="09123456789"
+                                FontSize="17"
+                                FontFamily="Arial"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Text="Click to copy"
+                                FontSize="13"
+                                TextColor="Gray"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <!--Items-->
+                <Label
+                    Text="Order Info"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Margin="10, 20, 10, 10"/>
+                <StackLayout Margin="20, 0">
+                    <Label
+                        x:Name="lblDate"
+                        Text="Date"
+                        FontSize="17"
+                        Margin="0, 0, 0, 10"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Status: "
+                            TextColor="Gray"
+                            VerticalOptions="Center"/>
+                        <Label
+                            x:Name="lblStatus"
+                            Text="Status"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 10">
+                        <Label
+                            Text="Order for "
+                            FontSize="15"
+                            FontFamily="Arial"/>
+                        <Label
+                            x:Name="lblType"
+                            Text="Type"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 20">
+                        <Label
+                            Text="Order ID: "
+                            FontSize="15"
+                            TextColor="Gray"/>
+                        <Label
+                            x:Name="lblID"
+                            Text="ID"
+                            FontSize="15"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+
+                    <Frame x:Name="RemarksPanel" BorderColor="Gray" BackgroundColor="Transparent" Padding="10" Margin="0, 0, 0, 20">
+                        <StackLayout>
+                            <Label
+                                Text="Customer Remarks"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                FontFamily="Arial"/>
+                            <Label
+                                x:Name="lblRemarks"
+                                Text="Remarks"
+                                Margin="10, 0"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Payment-->
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label
+                                x:Name="lblPaymentStatus"
+                                FontSize="25"
+                                FontAttributes="Bold"
+                                FontFamily="Arial"
+                                VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label
+                                Text="Total"
+                                FontFamily="Arial"
+                                TextColor="Gray"
+                                HorizontalOptions="End"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                <Label
+                                    Text="₱"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"
+                                    HorizontalOptions="End"
+                                    Margin="0, 0, 0, 5"/>
+                                <Label
+                                    x:Name="lblTotalCost"
+                                    Text="0.00"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"
+                                    HorizontalOptions="End"
+                                    Margin="0, 0, 0, 5"/>
+                            </StackLayout>
+                            
+                            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                <Label
+                                    Text="Items: "
+                                    FontFamily="Arial"
+                                    TextColor="Gray"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center"/>
+                                <Label
+                                    Text="₱"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"/>
+                                <Label
+                                    x:Name="lblSubtotalCost"
+                                    Text="0.00"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                <Label
+                                    Text="Delivery Fee: "
+                                    FontFamily="Arial"
+                                    TextColor="Gray"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center"/>
+                                <Label
+                                    Text="₱"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"/>
+                                <Label
+                                    x:Name="lblDeliveryFee"
+                                    Text="0.00"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 5">
+                        <Label
+                            Text="To Pay: "
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            Text="{Binding ToPay, StringFormat='₱{0:F2}'}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"
+                            HorizontalOptions="End"/>
+                    </StackLayout>
+                    <StackLayout  Orientation="Horizontal">
+                        <Label
+                            Text="Paid Cash: "
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            Text="{Binding PaidCash, StringFormat='₱{0:F2}'}"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Paid GCash: "
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            Text="{Binding PaidGCash, StringFormat='₱{0:F2}'}"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Change: "
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            Text="{Binding Change, StringFormat='₱{0:F2}'}"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+
+                    <Frame x:Name="TransactionNumberPanel" IsVisible="False" BorderColor="Gray" BackgroundColor="Transparent" Padding="10" Margin="0, 20, 0, 0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CopyGCashTNum"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="GCash Transaction Number"
+                                    FontSize="15"
+                                    FontAttributes="Bold"
+                                    FontFamily="Arial"
+                                    HeightRequest="30"/>
+                                <Label
+                                    Text="Click to copy"
+                                    FontSize="13"
+                                    TextColor="Gray"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <Label
+                                x:Name="lblTransactionNumber"
+                                Margin="10, 0"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Grid x:Name="UpdatePaymentPanel" Margin="0, 20, 0, 0" IsVisible="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Paid Cash: "
+                            HeightRequest="40"
+                            VerticalTextAlignment="Center"/>
+                        <Entry
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="txtPaidCash"
+                            Placeholder="Input Amount..."
+                            Keyboard="Numeric"/>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Paid GCash: "
+                            HeightRequest="40"
+                            VerticalTextAlignment="Center"/>
+                        <Entry
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="txtPaidGCash"
+                            Placeholder="Input Amount..."
+                            Keyboard="Numeric"/>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal" Margin="10, 20, 10, 10">
+                        <Button
+                            x:Name="btnUpdate"
+                            Text="Update Payment"
+                            Clicked="UpdatePaymentClicked"
+                            HorizontalOptions="EndAndExpand"
+                            IsVisible="False"/>
+                        <Button
+                            x:Name="btnCancelUpdate"
+                            Text="Cancel"
+                            Clicked="CancelUpdateClicked"
+                            BackgroundColor="Red"
+                            HorizontalOptions="End"
+                            Margin="10, 0, 0, 0"
+                            IsVisible="False"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <!--Ordered Items-->
+                <Label
+                    Text="Ordered Items"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Margin="10, 20, 10, 10"/>
+                <StackLayout Margin="20, 0">
+                    <StackLayout Orientation="Horizontal" Margin="30, 0">
+                        <Label
+                            Text="Items: "
+                            FontFamily="Arial"
+                            VerticalOptions="Center"
+                            TextColor="Gray"
+                            HorizontalOptions="EndAndExpand"/>
+                        <Label
+                            x:Name="lblTotalItems"
+                            Text="0"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"
+                            VerticalOptions="Center"/>
+                        <Label
+                            Text="   Total: "
+                            FontFamily="Arial"
+                            VerticalOptions="Center"
+                            TextColor="Gray"/>
+                        <Label
+                            Text="₱"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                        <Label
+                            x:Name="lblSubTotalCost2"
+                            Text="0.00"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            FontFamily="Arial"/>
+                    </StackLayout>
+                    <Frame BorderColor="Gray" BackgroundColor="Transparent" Padding="0" Margin="0, 0, 0, 10">
+                        <CollectionView ItemsSource="{Binding OrderItems}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodel:OrderItemDisplay">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="10, 0">
+                                            <StackLayout HorizontalOptions="Start">
+                                                <Image Source="{Binding ProductImage}" Aspect="AspectFill" HeightRequest="65" WidthRequest="65" Margin="10">
+                                                    <Image.Shadow>
+                                                        <Shadow
+                                                            Brush="Black"
+                                                            Radius="10"
+                                                            Opacity="0.5"/>
+                                                    </Image.Shadow>
+                                                </Image>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="StartAndExpand">
+                                                <StackLayout VerticalOptions="CenterAndExpand">
+                                                    <Label
+                                                        Text="{Binding ProductName}"
+                                                        FontSize="16"/>
+                                                    <Label
+                                                        Text="{Binding ProductCategory}"
+                                                        FontSize="10"
+                                                        Margin="0, 0, 0, 5"/>
+                                                    <Label
+                                                        Text="{Binding Amount, StringFormat='Qty: {0}'}"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        FontFamily="Arial"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="CenterAndExpand" Margin="5, 0">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="0, 5">
+                                                    <Label
+                                                        Text="₱"
+                                                        FontSize="8"
+                                                        FontFamily="Arial"
+                                                        VerticalOptions="Center"/>
+                                                    <Label
+                                                        Text="{Binding Cost, StringFormat='{0:F2}'}"
+                                                        FontSize="10"
+                                                        FontFamily="Arial"/>
+                                                    <Label
+                                                        Text=" ea."
+                                                        FontSize="10"
+                                                        FontFamily="Arial"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Label
+                                                        Text="₱"
+                                                        FontSize="10"
+                                                        FontFamily="Arial"
+                                                        VerticalOptions="Center"/>
+                                                    <Label
+                                                        Text="{Binding SubTotal, StringFormat='{0:F2}'}"
+                                                        FontSize="13"
+                                                        FontAttributes="Bold"
+                                                        FontFamily="Arial"/>
+
+                                                </StackLayout>
+                                                <Label
+                                                    Text=" subtotal"
+                                                    FontSize="10"
+                                                    FontAttributes="Bold"
+                                                    FontFamily="Arial"
+                                                    HorizontalOptions="End"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Rectangle
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="1"
+                                            Margin="30, 0, 30, 5"
+                                            BackgroundColor="Gray"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Frame>
+                    <StackLayout IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="FillAndExpand"/>
+                        <Label
+                            Text="{Binding Status}"
+                            Margin="10"
+                            HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <Button
+            x:Name="btnAccept"
+            Clicked="AcceptOrderClicked"
+            Text="Accept Order"
+            Margin="10"
+            IsVisible="False"/>
+        <Button
+            x:Name="btnReject"
+            Clicked="RejectOrderClicked"
+            Text="Reject Order"
+            Margin="10"
+            BackgroundColor="Red"
+            IsVisible="False"/>
+        <Button
+            x:Name="btnPrepared"
+            Clicked="PreparedClicked"
+            Text="Mark for "
+            Margin="10"
+            IsVisible="False"/>
+        <Button
+            x:Name="btnPaid"
+            Clicked="PaidClicked"
+            Text="Mark as Paid"
+            Margin="10"
+            IsVisible="False"/>
+        <Button
+            x:Name="btnClose"
+            Clicked="CloseClicked"
+            Text="Mark as "
+            Margin="10"
+            IsVisible="False"/>
+    </StackLayout>
+</ContentPage>

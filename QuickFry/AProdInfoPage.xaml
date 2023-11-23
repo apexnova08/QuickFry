@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.AProdInfoPage"
+             Title="Product Information"
+             Shell.FlyoutBehavior="Disabled">
+    <StackLayout>
+        <StackLayout Margin="10" Orientation="Horizontal">
+            <Label
+                x:Name="lblID"
+                FontSize="16"
+                FontFamily="Arial"
+                VerticalTextAlignment="Center"/>
+            <Button
+                Text="Update"
+                Clicked="GotoEditPage"
+                HorizontalOptions="EndAndExpand"
+                HeightRequest="40"/>
+        </StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <Image
+                    x:Name="imgProd"
+                    Source="imageplaceholder1121.png"/>
+                <StackLayout Margin="10">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label
+                                x:Name="lblName"
+                                Text="Item Name"
+                                VerticalTextAlignment="Center"
+                                FontSize="20"
+                                FontFamily="Arial"
+                                FontAttributes="Bold"
+                                HorizontalOptions="StartAndExpand"/>
+                            <Label
+                                x:Name="lblCategory"
+                                Text="Category"
+                                FontFamily="Arial"
+                                TextColor="Gray"/>
+                        </StackLayout>
+
+                        <Label
+                            Text="₱"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            x:Name="lblCost"
+                            Text="0.00"
+                            FontSize="25"
+                            FontFamily="Arial"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <Label
+                        Text="About this item:"
+                        FontFamily="Arial"
+                        TextColor="Gray"
+                        Margin="0, 50, 0, 10"/>
+                    <Label
+                        x:Name="lblDescription"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <StackLayout Margin="10">
+            <Button
+                x:Name="btnDisable"
+                Clicked="DisableClicked"
+                VerticalOptions="End"
+                HorizontalOptions="Fill"
+                IsEnabled="{Binding IsNotBusy}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

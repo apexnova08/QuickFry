@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ci="clr-namespace:CropperImage.MAUI;assembly=CropperImage.MAUI"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="QuickFry.AProdEditPage"
+             Title="AProdEditPage"
+             Shell.FlyoutBehavior="Disabled">
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout Margin="10">
+                <Label
+                    Text="Product Info"
+                    FontSize="20"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Start"
+                    HeightRequest="39"/>
+                <StackLayout Margin="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Product Name"/>
+                        <Label
+                            x:Name="lblNameEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <Entry
+                        x:Name="txtProdName"
+                        Placeholder="Product Name"
+                        Margin="0, 0, 0, 15"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Image"/>
+                        <Label
+                            x:Name="lblImageEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout HeightRequest="302" WidthRequest="302" HorizontalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryL}, Dark={StaticResource TertiaryD}}" Padding="1" Margin="0, 10, 0, 15">
+                        <sfCore:SfEffectsView x:Name="ImgCurrent" TouchUp="EditImage">
+                            <Grid>
+                                <Image
+                                    x:Name="ProdImage"
+                                    HeightRequest="300"
+                                    WidthRequest="300"
+                                    Aspect="AspectFill"
+                                    Source="imageplaceholder1121"/>
+
+                                <Border BackgroundColor="Black" Opacity="0.5"/>
+                                <Label
+                                    Text="Click to Update"
+                                    FontSize="18"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </sfCore:SfEffectsView>
+                        <Grid x:Name="ImgNew" IsVisible="False">
+                            <ci:CropperImageView
+                                x:Name="Cropper" Margin="0, -5, 0, 0"
+                                WidthRequest="300" HeightRequest="300"
+                                EditMode="True" ShowSelectButton="True" ShowZoomButtons="True" ShowEditButton="True" ShowPickButton="True"
+                                ButtonsColor="White" CropperFigure="Square" SelectSourceOnTap="True"
+                                CroppedImageFormat="PNG" CroppedImageMaxResolution="1000,1000"/>
+                            <Border BackgroundColor="Transparent" Stroke="{StaticResource Primary}" Margin="32, 32, 32, 27"/>
+                            <sfCore:SfEffectsView TouchUp="RevertImage" HorizontalOptions="End" VerticalOptions="Start">
+                                <Label Text="Cancel" TextDecorations="Underline" TextColor="White" Margin="10, 5"/>
+                            </sfCore:SfEffectsView>
+                        </Grid>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Category"/>
+                        <Label
+                            x:Name="lblCategoryEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <Picker
+                        x:Name="pckCategory"
+                        Title="Category"
+                        ItemsSource="{Binding Ctgs}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedCategory}"
+                        Margin="0, 0, 0, 15"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Cost (Per Item)"/>
+                        <Label
+                            x:Name="lblCostEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <Entry
+                        x:Name="txtCost"
+                        Placeholder="Cost"
+                        Keyboard="Numeric"
+                        Margin="0, 0, 0, 15"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Description"/>
+                        <Label
+                            x:Name="lblDescriptionEmpty"
+                            Text="*"
+                            IsVisible="False"
+                            TextColor="Red"/>
+                    </StackLayout>
+                    <Editor
+                        x:Name="txtDescription"
+                        Placeholder="Description"
+                        HeightRequest="150"/>
+                    <Button
+                        x:Name="btnUpdate"
+                        Text="Update Product"
+                        Clicked="AddClicked"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Margin="0, 30, 0, 0"/>
+                </StackLayout>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

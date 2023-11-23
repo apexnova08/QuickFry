@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.CProfilePage"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             Title="Profile"
+             Shell.FlyoutBehavior="Disabled">
+    <StackLayout>
+        <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+            <StackLayout Margin="0, 10">
+                <Label
+                    Text="Logged in as:"
+                    FontAttributes="Italic"
+                    TextColor="Gray"/>
+                <Label
+                    x:Name="lblName"
+                    Text="Guest"
+                    FontSize="30"
+                    FontFamily="Arial"
+                    FontAttributes="Bold"/>
+                <Label
+                    x:Name="lblUsername"
+                    Text="@username"/>
+                <Label
+                    x:Name="lblLoggedOut"
+                    Text="*You need to be logged in to order from this application."
+                    TextColor="Gray"
+                    Margin="0, 10, 0, 0"/>
+            </StackLayout>
+            <Rectangle
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill"
+                HeightRequest="1"
+                Margin="10, 0"/>
+
+            <!--Logged Out-->
+            <StackLayout x:Name="LoggedOutPanel">
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0" TouchUp="GotoLogInPage">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Log In"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0" TouchUp="GotoRegisterPage">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Register"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+            </StackLayout>
+
+            <!--Logged In-->
+            <StackLayout x:Name="LoggedInPanel" IsVisible="False">
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0" TouchUp="GotoAccountUpdatePage">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Update Account Info"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0" TouchUp="GotoAddressesPage">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Address Book"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Order History"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+                <sfCore:SfEffectsView Margin="0, 5, 0, 0" TouchUp="GotoLogInPage">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                        <Label
+                            Text="Log Out"
+                            VerticalOptions="CenterAndExpand"
+                            TextColor="Red"/>
+                        <Label
+                            Text="›"
+                            FontSize="30"
+                            FontFamily="Arial"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="EndAndExpand"
+                            HeightRequest="50"
+                            Margin="15, 0"/>
+                    </StackLayout>
+                </sfCore:SfEffectsView>
+            </StackLayout>
+        </StackLayout>
+
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+    </StackLayout>
+</ContentPage>

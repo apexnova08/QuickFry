@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="QuickFry.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:QuickFry"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellItem Route="InitialPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:InitialPage}"/>
+    </ShellItem>
+    <ShellItem Route="LoginSelectPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginSelectPage}"/>
+    </ShellItem>
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+
+    <ShellItem Route="ADashboardPage" Title="Dashboard">
+        <ShellContent ContentTemplate="{DataTemplate local:ADashboardPage}"/>
+    </ShellItem>
+    <ShellItem Route="AProductsPage" Title="Menu Items">
+        <ShellContent ContentTemplate="{DataTemplate local:AProductsPage}"/>
+    </ShellItem>
+    <FlyoutItem Title="Orders">
+        <Tab Title="Active" Icon="icon_about.svg">
+            <ShellContent Route="AOrdersActivePage"
+                          ContentTemplate="{DataTemplate local:AOrdersActivePage}" />
+        </Tab>
+        <Tab Title="Processed" Icon="icon_about.svg">
+            <ShellContent Route="AOrdersFinishedPage"
+                          ContentTemplate="{DataTemplate local:AOrdersFinishedPage}" />
+        </Tab>
+        <Tab Title="Closed" Icon="icon_about.svg">
+            <ShellContent Route="AOrdersClosedPage"
+                          ContentTemplate="{DataTemplate local:AOrdersClosedPage}" />
+        </Tab>
+    </FlyoutItem>
+    <ShellItem Route="AFeedbacksPage" FlyoutItemIsVisible="False" Title="Feedbacks">
+        <ShellContent ContentTemplate="{DataTemplate local:AFeedbacksPage}"/>
+    </ShellItem>
+    <ShellItem Route="AReportsPage" FlyoutItemIsVisible="False" Title="Reports">
+        <ShellContent ContentTemplate="{DataTemplate local:AReportsPage}"/>
+    </ShellItem>
+    <ShellItem Route="ASettingsPage" Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate local:ASettingsPage}"/>
+    </ShellItem>
+
+    <FlyoutItem Title="Customer" FlyoutItemIsVisible="False">
+        <Tab Title="Menu" Icon="icon_about.svg">
+            <ShellContent Route="CMenuPage"
+                          ContentTemplate="{DataTemplate local:CMenuPage}" />
+        </Tab>
+        <Tab Title="Cart" Icon="icon_about.svg">
+            <ShellContent Route="CCartPage"
+                          ContentTemplate="{DataTemplate local:CCartPage}" />
+        </Tab>
+        <Tab Title="Orders" Icon="icon_about.svg">
+            <ShellContent Route="COrdersPage"
+                          ContentTemplate="{DataTemplate local:COrdersPage}" />
+        </Tab>
+        <Tab Title="Account" Icon="icon_about.svg">
+            <ShellContent Route="CProfilePage"
+                          ContentTemplate="{DataTemplate local:CProfilePage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <ShellItem Route="RiderPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:RiderPage}"/>
+    </ShellItem>
+    
+    <ShellItem Route="ATestPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:ATestPage}"/>
+    </ShellItem>
+    <ShellItem Route="CTestPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:CTestPage}"/>
+    </ShellItem>
+    <ShellItem Route="RTestPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:RTestPage}"/>
+    </ShellItem>
+
+    <ShellItem Title="Logout">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+</Shell>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.ASCtgEditPage"
+             Title="Edit Category"
+             Shell.FlyoutBehavior="Disabled">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <StackLayout Margin="10">
+                <Label
+                    Text="Category Name"
+                    Margin="0, 15, 0, 0"/>
+                <Entry
+                    x:Name="txtCtgName"
+                    Placeholder="Category Name (eg. Women)"/>
+                <Button
+                    Text="Save"
+                    Clicked="EditClicked"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Margin="0, 25, 0, 0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

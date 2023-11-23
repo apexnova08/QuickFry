@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.CCartEditPage"
+             Title="Edit Item"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False">
+    <StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <Image
+                    x:Name="imgProd"
+                    Source="imageplaceholder1121.png"/>
+                <StackLayout Margin="10">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label
+                                x:Name="lblName"
+                                Text="Item Name"
+                                VerticalTextAlignment="Center"
+                                FontSize="20"
+                                FontFamily="Arial"
+                                FontAttributes="Bold"
+                                HorizontalOptions="StartAndExpand"/>
+                            <Label
+                                x:Name="lblCategory"
+                                Text="Category"
+                                FontFamily="Arial"
+                                TextColor="Gray"/>
+                        </StackLayout>
+
+                        <Label
+                            Text="₱"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="Center"/>
+                        <Label
+                            x:Name="lblCost"
+                            Text="0.00"
+                            FontSize="25"
+                            FontFamily="Arial"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <Label
+                        Text="About this item:"
+                        FontFamily="Arial"
+                        TextColor="Gray"
+                        Margin="0, 50, 0, 10"/>
+                    <Label
+                        x:Name="lblDescription"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <Grid x:Name="LoggedInPanel" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="0"
+                x:Name="btnValDown"
+                Clicked="AddValueDown"
+                Text="−"
+                FontSize="17"
+                FontAttributes="Bold"
+                FontFamily="Arial"
+                Margin="0, 0, 5, 0"/>
+            <Entry
+                Grid.Column="1"
+                x:Name="txtAddValue"
+                Text="0"
+                TextChanged="AddValueChanged"
+                FontFamily="Arial"
+                WidthRequest="70"
+                Keyboard="Numeric"
+                HorizontalTextAlignment="Center"/>
+            <Button
+                Grid.Column="2"
+                x:Name="btnValUp"
+                Clicked="AddValueUp"
+                Text="+"
+                FontSize="17"
+                FontAttributes="Bold"
+                FontFamily="Arial"
+                Margin="5, 0, 0, 0"/>
+        </Grid>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="0"
+                x:Name="btnUpdate"
+                Text="Save"
+                Clicked="UpdateClicked"
+                Margin="0, 0, 5, 0"/>
+            <Button
+                Grid.Column="1"
+                Text="Remove from cart"
+                Clicked="RemoveClicked"
+                BackgroundColor="Red"
+                Margin="5, 0, 0, 0"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

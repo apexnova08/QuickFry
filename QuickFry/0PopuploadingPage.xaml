@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="MauiToolkitPopupSample._0PopupLoadingPage"
+           xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           Size="300, 150"
+           Color="{AppThemeBinding Light={StaticResource BGL}, Dark={StaticResource BGD}}">
+    
+    <StackLayout>
+        <Label
+            Text="Processing..."
+            FontSize="25"
+            FontFamily="Arial"
+            FontAttributes="Bold"
+            Margin="20"/>
+        <HorizontalStackLayout VerticalOptions="CenterAndExpand">
+            <ActivityIndicator IsRunning="True" Margin="20, 0"/>
+            <Label
+                Text="{Binding Status}"
+                x:Name="lblStatus"
+                LineBreakMode="WordWrap"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="Start"
+                Margin="10, 0, 0, 0"/>
+        </HorizontalStackLayout>
+    </StackLayout>
+</mct:Popup>

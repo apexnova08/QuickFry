@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="QuickFry.AOrdersActive"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             x:DataType="viewmodel:OrderViewModel"
+             Title="AOrdersActive">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="10, 20, 10, 0">
+            <Label
+                Text="Your Orders"
+                VerticalTextAlignment="Center"
+                FontSize="20"
+                FontFamily="Arial"
+                FontAttributes="Bold"
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="39"/>
+        </StackLayout>
+        <Rectangle
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill"
+                HeightRequest="1"
+                Margin="10, 0"/>
+        <RefreshView Command="{Binding GetOrdersUserCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout>
+                    <StackLayout Margin="0, 100" IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="FillAndExpand"/>
+                        <Label
+                            Text="{Binding Status}"
+                            Margin="10"
+                            HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout x:Name="evOrders" IsVisible="{Binding OrderEmpty}" HorizontalOptions="CenterAndExpand" Margin="0, 100">
+                        <Label
+                            Text="Empty"
+                            TextColor="{StaticResource Gray400}"
+                            HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding Orders}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodel:OrderDisplay">
+                                <StackLayout>
+                                    <sfCore:SfEffectsView TouchUpCommand="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrderViewModel}}, Path=OpenOrderAdminCommand}" TouchUpCommandParameter="{Binding .}">
+                                        <StackLayout Orientation="Horizontal" Margin="20, 10" HeightRequest="90">
+                                            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                                <Label
+                                                    Text="{Binding Date}"
+                                                    FontSize="12"
+                                                    FontFamily="Arial"
+                                                    TextColor="Gray"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label
+                                                        Text="{Binding TotalItems}"
+                                                        FontSize="17"
+                                                        FontAttributes="Bold"
+                                                        FontFamily="Arial"/>
+                                                    <Label
+                                                        Text=" items for "
+                                                        VerticalOptions="Center"/>
+                                                    <Label
+                                                        Text="{Binding Type}"
+                                                        FontSize="17"
+                                                        FontAttributes="Bold"
+                                                        FontFamily="Arial"/>
+                                                </StackLayout>
+                                                <Label
+                                                    Text="{Binding Address}"
+                                                    FontSize="11"/>
+                                                <StackLayout Orientation="Horizontal" Margin="10, 10, 0, 0">
+                                                    <Label
+                                                        Text="{Binding Status}"
+                                                        FontAttributes="Italic"
+                                                        FontFamily="Arial"/>
+                                                    <Label
+                                                        Text=" • "
+                                                        FontFamily="Arial"/>
+                                                    <Label
+                                                        Text="{Binding PaidStatus}"
+                                                        FontAttributes="Italic"
+                                                        FontFamily="Arial"
+                                                        TextColor="{Binding PaidStatusColor}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label
+                                                    Text="Total"
+                                                    TextColor="Gray"
+                                                    HorizontalOptions="Center"/>
+                                                <Label
+                                                    Text="{Binding TotalCost, StringFormat='₱{0:F2}'}"
+                                                    FontSize="16"
+                                                    FontAttributes="Bold"
+                                                    FontFamily="Arial"
+                                                    HorizontalOptions="Center"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </sfCore:SfEffectsView>
+                                    <Rectangle
+                                        BackgroundColor="Gray"
+                                        HorizontalOptions="Fill"
+                                        HeightRequest="1"
+                                        Margin="30, 0, 30, 5"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+    </StackLayout>
+</ContentPage>

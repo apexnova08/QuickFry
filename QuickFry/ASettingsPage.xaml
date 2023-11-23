@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.ASettingsPage"
+             xmlns:sfCore="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             Title="Settings">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <Label
+                        Text="System Settings"
+                        VerticalTextAlignment="Center"
+                        FontSize="20"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"
+                        HeightRequest="39"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <sfCore:SfEffectsView TouchUp="GotoAccounts" Margin="0, 5, 0, 0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                            <Label
+                                Text="Accounts"
+                                VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                Text="›"
+                                FontSize="30"
+                                FontFamily="Arial"
+                                TextColor="Gray"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="50"
+                                Margin="15, 0"/>
+                        </StackLayout>
+                    </sfCore:SfEffectsView>
+                </StackLayout>
+
+                <Rectangle
+                    BackgroundColor="Gray"
+                    HorizontalOptions="Fill"
+                    HeightRequest="1"
+                    Margin="10, 20, 10, 0"/>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <Label
+                        Text="System Variables"
+                        VerticalTextAlignment="Center"
+                        FontSize="20"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
+
+                <!--Content-->
+
+                <StackLayout>
+                    <sfCore:SfEffectsView TouchUp="GotoCategories" Margin="0, 5, 0, 0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                            <Label
+                                Text="Menu Categories"
+                                VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                Text="›"
+                                FontSize="30"
+                                FontFamily="Arial"
+                                TextColor="Gray"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="50"
+                                Margin="15, 0"/>
+                        </StackLayout>
+                    </sfCore:SfEffectsView>
+
+                    <sfCore:SfEffectsView TouchUp="GotoDeliveryFee">
+                        <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                            <Label
+                                Text="Delivery Charge"
+                                VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                Text="›"
+                                FontSize="30"
+                                FontFamily="Arial"
+                                TextColor="Gray"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="50"
+                                Margin="15, 0"/>
+                        </StackLayout>
+                    </sfCore:SfEffectsView>
+
+                    <sfCore:SfEffectsView TouchUp="GotoGCashQR">
+                        <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="20, 0">
+                            <Label
+                                Text="GCash"
+                                VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                Text="›"
+                                FontSize="30"
+                                FontFamily="Arial"
+                                TextColor="Gray"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="50"
+                                Margin="15, 0"/>
+                        </StackLayout>
+                    </sfCore:SfEffectsView>
+
+                </StackLayout>
+
+                <!--Content-->
+
+                <Rectangle
+                    BackgroundColor="Gray"
+                    HorizontalOptions="Fill"
+                    HeightRequest="1"
+                    Margin="10, 20, 10, 0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.ASAccountAddPage"
+             Title="Create Account"
+             Shell.FlyoutBehavior="Disabled">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <Label
+                Text="Personal Info"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <StackLayout Margin="10, 0, 10, 20">
+                <!--Name-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Name"/>
+                    <Label
+                        x:Name="lblNameEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Entry
+                    x:Name="txtName"
+                    Placeholder="Name"/>
+
+                <!--Address-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Address"/>
+                    <Label
+                        x:Name="lblAddressEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Entry
+                    x:Name="txtAddress"
+                    Placeholder="Address"/>
+
+                <!--Number-->
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Contact No."/>
+                    <Label
+                        x:Name="lblContactEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Entry
+                    x:Name="txtContact"
+                    Placeholder="09XXXXXXXXX"
+                    MaxLength="11"
+                    Keyboard="Telephone"/>
+
+                <StackLayout>
+                    <RadioButton x:Name="rbAdmin" Content="Admin"/>
+                    <RadioButton x:Name="rbRider" Content="Rider"/>
+                </StackLayout>
+            </StackLayout>
+
+            <Label
+                Text="Credentials"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            <StackLayout Margin="10, 0, 10, 20">
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Username"/>
+                    <Label
+                        x:Name="lblUserEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                    <Label
+                        x:Name="lblWrongUser"
+                        Text="*Invalid User"
+                        FontSize="12"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+
+                <Entry
+                    x:Name="txtUser"
+                    Placeholder="Username"/>
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Password"/>
+                    <Label
+                        x:Name="lblPasswordEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        Placeholder="Password"
+                        IsPassword="True"
+                        x:Name="txtPassword"/>
+                    <Button
+                        Grid.Column="1"
+                        x:Name="SHPassword"
+                        Clicked="SHPasswordClicked"
+                        Text="SHOW"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"
+                        Padding="5"/>
+                </Grid>
+                <StackLayout Orientation="Horizontal" Margin="0, 15, 0, 0">
+                    <Label Text="Confirm Password"/>
+                    <Label
+                        x:Name="lblCPasswordEmpty"
+                        Text="*"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                    <Label
+                        x:Name="lblPasswordsNotMatch"
+                        Text="*Passwords do not match"
+                        FontSize="12"
+                        IsVisible="False"
+                        TextColor="Red"/>
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Grid.Column="0"
+                        Placeholder="Confirm Password"
+                        IsPassword="True"
+                        x:Name="txtCPassword"/>
+                    <Button
+                        Grid.Column="1"
+                        x:Name="SHCPassword"
+                        Clicked="SHConfirmPasswordClicked"
+                        Text="SHOW"
+                        FontFamily="Arial"
+                        FontAttributes="Bold"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"
+                        Padding="5"/>
+                </Grid>
+            </StackLayout>
+            <Button
+                Text="Register"
+                Clicked="RegisterClicked"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="0, 25, 0, 0"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

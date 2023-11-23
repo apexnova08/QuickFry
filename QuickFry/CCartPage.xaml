@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickFry.CCartPage"
+             xmlns:model="clr-namespace:QuickFry.Models"
+             xmlns:viewmodel="clr-namespace:QuickFry.ViewModels"
+             x:DataType="viewmodel:CartViewModel"
+             Title="Cart"
+             Shell.FlyoutBehavior="Disabled">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start" Margin="10, 20, 10, 0">
+            <Label
+                Text="Your Items"
+                VerticalTextAlignment="Center"
+                FontSize="20"
+                FontFamily="Arial"
+                FontAttributes="Bold"
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="39"/>
+        </StackLayout>
+        <Rectangle
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill"
+                HeightRequest="1"
+                Margin="10, 0"/>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <StackLayout Margin="0, 100" IsVisible="{Binding IsBusy}">
+                    <ActivityIndicator
+                        IsRunning="{Binding IsBusy}"
+                        HorizontalOptions="FillAndExpand"/>
+                    <Label
+                        Text="{Binding Status}"
+                        Margin="10"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout x:Name="evItems" IsVisible="{Binding CartEmpty}" HorizontalOptions="CenterAndExpand" Margin="0, 100">
+                    <Label
+                        Text="Empty"
+                        TextColor="{StaticResource Gray400}"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding CartItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:CartDisplay">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" Margin="10, 0">
+                                    <StackLayout HorizontalOptions="Start">
+                                        <Image Source="{Binding ProductImage}" Aspect="AspectFill" HeightRequest="65" WidthRequest="65" Margin="10">
+                                            <Image.Shadow>
+                                                <Shadow
+                                                    Brush="Black"
+                                                    Radius="10"
+                                                    Opacity="0.5"/>
+                                            </Image.Shadow>
+                                        </Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <StackLayout VerticalOptions="CenterAndExpand">
+                                            <Label
+                                                Text="{Binding ProductName}"
+                                                FontSize="16"/>
+                                            <Label
+                                                Text="{Binding ProductCategory}"
+                                                FontSize="10"
+                                                Margin="0, 0, 0, 5"/>
+                                            <Label
+                                                Text="{Binding Amount, StringFormat='Qty: {0}'}"
+                                                FontSize="14"
+                                                FontAttributes="Bold"
+                                                FontFamily="Arial"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="0, 5">
+                                            <Label
+                                                Text="₱"
+                                                FontSize="8"
+                                                FontFamily="Arial"
+                                                VerticalOptions="Center"/>
+                                            <Label
+                                                Text="{Binding ProductCost, StringFormat='{0:F2}'}"
+                                                FontSize="10"
+                                                FontFamily="Arial"/>
+                                            <Label
+                                                Text=" ea."
+                                                FontSize="10"
+                                                FontFamily="Arial"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                            <Label
+                                                Text="₱"
+                                                FontSize="10"
+                                                FontFamily="Arial"
+                                                VerticalOptions="Center"/>
+                                            <Label
+                                                Text="{Binding SubTotal, StringFormat='{0:F2}'}"
+                                                FontSize="13"
+                                                FontAttributes="Bold"
+                                                FontFamily="Arial"/>
+                                            
+                                        </StackLayout>
+                                        <Label
+                                            Text=" subtotal"
+                                            FontSize="10"
+                                            FontAttributes="Bold"
+                                            FontFamily="Arial"
+                                            HorizontalOptions="End"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="End" Margin="10">
+                                        <Button
+                                            Text="Edit"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CartViewModel}}, Path=GotoCartItemEditCommand}"
+                                            CommandParameter="{Binding .}"
+                                            VerticalOptions="CenterAndExpand"
+                                            Padding="0"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Rectangle
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="1"
+                                    Margin="30, 0, 30, 5"
+                                    BackgroundColor="Gray"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        <Rectangle
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            HeightRequest="1"
+            Margin="10, 0"/>
+        <StackLayout Orientation="Horizontal" Margin="30, 10, 30, 0">
+            <Label
+                Text="Items: "
+                FontSize="12"
+                FontFamily="Arial"
+                VerticalOptions="Center"
+                TextColor="Gray"
+                HorizontalOptions="EndAndExpand"/>
+            <Label
+                Text="{Binding TotalItems}"
+                FontSize="15"
+                FontAttributes="Bold"
+                FontFamily="Arial"
+                VerticalOptions="Center"/>
+            <Label
+                Text="   Total: "
+                FontFamily="Arial"
+                VerticalOptions="Center"
+                TextColor="Gray"/>
+            <Label
+                Text="{Binding TotalCost, StringFormat='{0:F2}'}"
+                FontSize="18"
+                FontAttributes="Bold"
+                FontFamily="Arial"/>
+        </StackLayout>
+        <Button
+            Text="Proceed to checkout"
+            Clicked="GotoCheckoutPage"
+            VerticalOptions="End"
+            HorizontalOptions="Fill"
+            IsEnabled="{Binding CartNotEmpty}"
+            Margin="10"/>
+    </StackLayout>
+</ContentPage>
